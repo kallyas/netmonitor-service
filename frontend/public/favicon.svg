@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Network Monitor">
+  <rect width="64" height="64" rx="12" fill="#223047"/>
+  <path fill="#ffffff" d="M18 20h28a4 4 0 0 1 4 4v18a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V24a4 4 0 0 1 4-4Zm0 4v18h28V24H18Z"/>
+  <path fill="#0f766e" d="M24 35.5h4.6l3.2-8.5 5.3 12 2.6-6.5H44v4h-1.6L37.3 49 32 37l-2.5 6.5H24v-8Z"/>
+  <circle cx="22" cy="29" r="3" fill="#0f766e"/>
+  <circle cx="46" cy="29" r="3" fill="#0f766e"/>
+  <path fill="#ffffff" d="M29 48h6v6h-6z"/>
+  <path fill="#ffffff" d="M22 54h20v4H22z"/>
+</svg>
