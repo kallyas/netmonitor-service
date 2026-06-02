@@ -2,6 +2,12 @@
 
 Monorepo with a Django REST API and a React dashboard for registering network devices and tracking their health.
 
+## Preview
+
+<p align="center">
+  <img src="screenshots/dashboard-preview.png" alt="Network Monitoring Dashboard Overview" width="100%">
+</p>
+
 ## What it does
 
 - Create and list devices (type, IP, location)
