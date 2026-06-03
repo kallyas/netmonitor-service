@@ -40,6 +40,35 @@ compiled React application and proxies `/api/*` requests to the backend service.
 The backend owns all domain validation and persistence through Django REST
 Framework and the Django ORM.
 
+## Backend Technology Decision
+
+Java and Spring Boot would be a strong fit for a larger production network
+management platform, especially where the service needs strict JVM operational
+standards, mature enterprise integrations, or a broader microservice ecosystem.
+For this scoped monitoring service, Django and Django REST Framework were chosen
+because they reduce the amount of framework plumbing needed to express the core
+domain clearly.
+
+The main tradeoffs were:
+
+- Django provides migrations, ORM models, validation, serializers, admin tooling,
+  and test utilities with little setup, which keeps the implementation focused on
+  device and status-report behavior.
+- DRF is effective for rapid prototyping because model-backed serializers and
+  viewsets make it possible to move from domain model to working REST API quickly
+  while still keeping validation and tests explicit.
+- DRF maps naturally to the required REST workflow: CRUD for devices plus custom
+  actions for status submission and report history.
+- Python keeps the code compact enough for the service rules, transaction flow,
+  and stale-device behavior to remain easy to inspect.
+- PostgreSQL is still used in the containerized runtime, so the database choice
+  remains compatible with the recommended persistence layer.
+
+The cost of this choice is that it does not demonstrate Java/Spring Boot
+conventions such as controllers, services, repositories, DTOs, and Bean
+Validation. That was accepted to prioritize a complete, readable implementation
+of the monitoring behavior.
+
 ## Domain Model
 
 ```mermaid
