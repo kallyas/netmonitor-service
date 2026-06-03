@@ -116,6 +116,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: ./backend
+        platforms: linux/amd64,linux/arm64
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.backend-meta.outputs.tags }}
         labels: ${{ steps.backend-meta.outputs.labels }}
@@ -136,6 +137,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         context: ./frontend
+        platforms: linux/amd64,linux/arm64
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.frontend-meta.outputs.tags }}
         labels: ${{ steps.frontend-meta.outputs.labels }}

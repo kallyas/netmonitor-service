@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: netmonitor
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_secure_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    image: ghcr.io/kallyas/netmonitor-service-backend:latest
+    platform: linux/amd64
+    command: >
+      sh -c "python manage.py migrate &&
+             gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 3"
+    environment:
+      DEBUG: "False"
+      DB_NAME: netmonitor
+      DB_USER: postgres
+      DB_PASS: postgres_secure_pass
+      DB_HOST: db
+      DB_PORT: "5432"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    image: ghcr.io/kallyas/netmonitor-service-frontend:latest
+    platform: linux/amd64
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
